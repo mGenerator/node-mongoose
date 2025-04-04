@@ -6,13 +6,11 @@ const connect = mongoose.connect(url, {});
 connect.then(() => {
   console.log("Connected to server.");
   //instantiate new document
-  const newCampsite = new Campsite({
+  Campsite.create({
     name: "React Lake Campground",
     description: "test"
-  });
+  })
   //saves document to the database, and returns a promise that tells whether the save operation failed or succeeded
-  newCampsite
-  .save()
   .then(campsite =>{
     console.log(campsite);
     return Campsite.find();
