@@ -1,6 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-//test by subbing schema for mongoose.Schema
+
+
+const commentSchema = new Schema({
+  rating: {
+    type: Number,
+    min: 1,
+    max: 5,
+    required: true
+  },
+  text:{
+    type: String,
+    required: true
+  },
+  author:{
+    type: String,
+    required: true
+  }
+},{
+  timestamps: true
+});
 const campsiteSchema = new Schema({
   name:{
     type: String,
@@ -10,7 +29,8 @@ const campsiteSchema = new Schema({
   description:{
     type: String,
     required: true,
-  }
+  },
+  comments: [commentSchema] 
 },
 //by setting timestamps to true, we automatically add two properties to the schema called created at and updated at
 {
